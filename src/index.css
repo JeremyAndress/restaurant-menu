@@ -8,3 +8,7 @@
   /* flex: 0 0 100%; */
   position: fixed;
 }
+
+.padding-top-card{
+  padding-top: 15% !important;
+}
