@@ -6,13 +6,25 @@ const Main = () => {
   const [cart, SetCart] = useState([])
   console.group(cart,'cart')
 
-  const Add = (id) =>{
-    console.log(`id ${id}`)
+  const Add = (id,stock) =>{
+    console.log(`id ${id} stock ${stock}`)
     if(cart.filter(ct => ct.id === id).length > 0){
-      const new_cart = cart.map(ct=> (ct.id === id)? {id:id,count:ct.count + 1}: ct )
+      const new_cart = cart.map(ct=> {
+        // (ct.id === id)? {id:id,count:ct.count + 1}: ct 
+        if(ct.id === id){
+          const count = ct.count + 1
+          if(count > stock){
+            alert('No hay mas Stock');
+            return ct
+          }
+          return {id:id,count:count}
+        }else{
+          return ct
+        }
+      })
       SetCart(new_cart)
     }else{
-      SetCart(
+      stock && SetCart(
         cart.concat({id:id, count: 1})
       )
     }
