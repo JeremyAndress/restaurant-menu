@@ -1,0 +1,1 @@
+export const ADD_FOOD_PLATE = "ADD_FOOD_PLATE"
