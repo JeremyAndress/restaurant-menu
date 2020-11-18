@@ -17,3 +17,4 @@ export function get_stock(food_id,ChangeStock) {
         }
     }
 }
+

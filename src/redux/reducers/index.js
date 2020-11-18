@@ -1,6 +1,7 @@
 import { combineReducers }  from "redux";
 import tables from './tables';
+import order from './order';
 const rootReducers = combineReducers({
-    tables
+    tables, order
 });
 export default rootReducers;
