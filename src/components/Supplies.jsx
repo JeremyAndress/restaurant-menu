@@ -23,7 +23,7 @@ const Supplies = ({sp,add,remove}) =>{
             <p><strong>${sp.price}</strong></p>
             <p className="pl-4"> stock: {stock}</p>
             <div className="ml-auto">
-                <button className="btn btn-primary-outline" onClick={() => add(sp.id,stock)}>+</button>
+                <button className="btn btn-primary-outline" onClick={() => add(sp,20)}>+</button>
                 <button className="btn btn-primary-outline" onClick={() => remove(sp.id)}>-</button>
             </div>
         </div>

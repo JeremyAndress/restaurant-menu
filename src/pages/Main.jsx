@@ -6,18 +6,18 @@ const Main = () => {
   const [cart, SetCart] = useState([])
   console.group(cart,'cart')
 
-  const Add = (id,stock) =>{
-    console.log(`id ${id} stock ${stock}`)
-    if(cart.filter(ct => ct.id === id).length > 0){
+  const Add = (supplies,stock) =>{
+    console.log(`id ${supplies.id} stock ${stock}`)
+    if(cart.filter(ct => ct.id === supplies.id).length > 0){
       const new_cart = cart.map(ct=> {
         // (ct.id === id)? {id:id,count:ct.count + 1}: ct 
-        if(ct.id === id){
+        if(ct.id === supplies.id){
           const count = ct.count + 1
           if(count > stock){
             alert('No hay mas Stock');
             return ct
           }
-          return {id:id,count:count}
+          return { ...ct,count:count}
         }else{
           return ct
         }
@@ -25,7 +25,10 @@ const Main = () => {
       SetCart(new_cart)
     }else{
       stock && SetCart(
-        cart.concat({id:id, count: 1})
+        cart.concat({
+          id:supplies.id, price: supplies.price
+          ,count: 1, name: supplies.name
+        })
       )
     }
   }
@@ -35,7 +38,7 @@ const Main = () => {
         if(ct.id === id){
           const count = ct.count - 1
           if(count > 0){
-            return { id: id, count:count }
+            return { ...ct, count:count }
           }else{ return null }
         }else{ return ct }
       }).filter(ct=> ct && ct)
@@ -50,7 +53,7 @@ const Main = () => {
           <div className="col-lg-7  ">
             <ListSupplies add={Add} remove={Remove}/>
           </div>
-          <div className="col-lg-5 bg-warning">
+          <div className="col-lg-5 ">
               <div className="menu-without">
                 <Order cart={cart}/>
               </div>
