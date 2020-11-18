@@ -21,10 +21,10 @@ const Supplies = ({sp,add,remove}) =>{
         
         <div className="d-flex mt-n1">
             <p><strong>${sp.price}</strong></p>
+            <p className="pl-4"> stock: {stock}</p>
             <div className="ml-auto">
-                <p>stock: {stock}</p>
-                <button onClick={() => add(sp.id,stock)}>+</button>
-                <button onClick={() => remove(sp.id)}>-</button>
+                <button className="btn btn-primary-outline" onClick={() => add(sp.id,stock)}>+</button>
+                <button className="btn btn-primary-outline" onClick={() => remove(sp.id)}>-</button>
             </div>
         </div>
         <hr className="mt-n1"/>

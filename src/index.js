@@ -8,14 +8,16 @@ import './index.css';
 import RouteCpx from './RouteCpx';
 import Main from './pages/Main';
 import Table from './pages/Table';
+import NotFound from './pages/NotFound';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 
 ReactDOM.render(
   <Provider store={store}>
     <Router>
     <Switch>
-        <RouteCpx exact path="/" component={Main} />
+        <RouteCpx exact path="/order" component={Main} /> 
         <Route exact path="/table" component={Table}/>
+        <Route component={NotFound}/>
     </Switch>
     </Router>
   </Provider>,

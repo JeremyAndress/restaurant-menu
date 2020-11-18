@@ -1,19 +1,20 @@
 import {instance} from './index';
 
-export function get_tables(food_id,ChangeStock) {
+export function get_tables(wait,load,error) {
     return async dispatch =>{
         try{
+            dispatch(wait());
             const params = { 
-                params: { food : food_id} ,
+                params: { page : 1} ,
             }
             console.log(params)
             const res = await instance.get('tables/get_all_tables/',params)
             const data = res.data
             console.group(data);
-            ChangeStock(data.stock || 0);
+            dispatch(load(data.data));
         }catch(err){
+            dispatch(error());
             console.error(err);
-            ChangeStock(0);
         }
     }
 }

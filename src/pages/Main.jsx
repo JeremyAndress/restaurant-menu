@@ -44,9 +44,10 @@ const Main = () => {
   }
   return (
       <div className="container-fluid">
-        <h4 className="pb-3 pt-3">Restaurant Siglo XXI</h4>
+        <p className="pb-3 pt-3 h4 font-uber-move-medium">Restaurant <strong className="text-success">Siglo XXI</strong></p>
+        <hr/>
       <div className="row">
-          <div className="col-lg-7 bg-success ">
+          <div className="col-lg-7  ">
             <ListSupplies add={Add} remove={Remove}/>
           </div>
           <div className="col-lg-5 bg-warning">

@@ -10,7 +10,7 @@ const RouteCpx = ({component: Component, path,exact=false,requiredRoles}) =>{
             path={path}
             render={ (props)=>
                 table ? 
-                order ? (<Component {...props}/>): (
+                !order ? (<Component {...props}/>): (
                     <Redirect 
                         to={{
                             pathname:"/"
