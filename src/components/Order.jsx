@@ -1,6 +1,14 @@
-import React from 'react';
+import React,{useState,useEffect} from 'react';
 
 const Order = ({cart}) => {
+    const [total,SetTotal] = useState(0);
+    useEffect(()=>{
+        const total = cart.reduce((acc,current)=>{
+            const val = current.count * current.price
+            return acc + val
+        },0)
+        SetTotal(total)
+    },[cart])
     return (
         <>
         <h1 className="font-uber-move-medium">Tu pedido</h1>
@@ -13,8 +21,9 @@ const Order = ({cart}) => {
             </div>
         ))}
         </div>
-
+        
         <div className="footer-cabron">
+        <div><p>Total: <strong>${total}</strong></p></div>
         <button type="button" className="btn btn-success btn-lg btn-block">Realizar Pedido</button>
         </div>
         </>
