@@ -1,28 +1,16 @@
-version: '3'
-
+version: '3.7'
 services:
-  nginx:
-    env_file: .env
-    build: 
+  sample:
+    container_name: centralized-app
+    build:
       context: .
-      dockerfile: ./compose/local/nginx.Dockerfile
-    restart: always
+      dockerfile: ./compose/local/react.Dockerfile
+    stdin_open: true
+    tty: true
+    volumes:
+      - '.:/app'
+      - '/app/node_modules'
     ports:
-      - "$EX_PORT_NGINX:80"
-    volumes:
-      - ./nginx/site.conf:/etc/nginx/conf.d/default.conf
-  core:
-    env_file: .env
-    build: 
-      context: .
-      dockerfile: ./compose/local/core.Dockerfile
-    restart: always
-    volumes:
-      - ./src:/home/app/web/
-    logging:
-      driver: "json-file"
-      options:
-        max-size: "5m"
-        max-file: "10"
-
-        
+      - 3001:3000
+    environment:
+      - CHOKIDAR_USEPOLLING=true
