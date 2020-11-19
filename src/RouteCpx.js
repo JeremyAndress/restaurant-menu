@@ -13,7 +13,7 @@ const RouteCpx = ({component: Component, path,exact=false,requiredRoles}) =>{
                 (<Component {...props}/>)
                 : <Redirect 
                         to={{
-                            pathname:"/table"
+                            pathname:"/"
                         }}
                     />
             }

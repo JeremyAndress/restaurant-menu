@@ -6,6 +6,8 @@ const Main = () => {
   const [cart, SetCart] = useState([])
   console.group(cart,'cart')
 
+  const CleanCart = () => SetCart([]);
+
   const Add = (supplies,stock) =>{
     console.log(`id ${supplies.id} stock ${stock}`)
     if(cart.filter(ct => ct.id === supplies.id).length > 0){
@@ -55,7 +57,7 @@ const Main = () => {
           </div>
           <div className="col-lg-5 ">
               <div className="menu-without">
-                <Order cart={cart}/>
+                <Order cart={cart} clean={CleanCart}/>
               </div>
           </div>
       </div>

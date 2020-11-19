@@ -2,15 +2,19 @@ import React,{useState,useEffect} from 'react';
 import {useDispatch,useSelector} from 'react-redux';
 import {create_order,get_order} from '../api/order';
 import Spinner from './Spinner';
+import OrderDetail from './OrderDetail';
 import {
     success_order, error_order,
     create_order as wait_order, update_order
 } from '../redux/actions/order';
 
-const Order = ({cart}) => {
+const Order = ({cart,clean}) => {
     const dispatch = useDispatch();
     const [total,SetTotal] = useState(0);
-    const order = useSelector(store => store.order)
+    const [show, setShow] = useState(false);
+    const order = useSelector(store => store.order);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
 
     useEffect(()=>{
         const total = cart.reduce((acc,current)=>{
@@ -36,26 +40,26 @@ const Order = ({cart}) => {
         ));
         const data = {
             table_id: localStorage.getItem('table'),
-            status_id: 1,
-            orders_detail: orders_detail
+            status_id: 1, orders_detail: orders_detail
         }
         console.group(data);
         dispatch(create_order(
             data, wait_order,
-            success_order, error_order
+            success_order, error_order, 
+            update_order, clean
         ));
     }
 
     return (
         <>
         {!order.id && <h4 className="font-uber-move-medium">Tu pedido</h4>}
-        {order.id && <h4 className="font-uber-move-medium">Numero de Orden {order.id}</h4>}
+        {order.id && <h4 className="font-uber-move-medium" onClick={handleShow}>Numero de Orden {order.id}</h4>}
 
-        { (order.id && order.status) ?  <h4>Estado {order.status}</h4> 
-        : order.pending ?
-        <Spinner/> :
-        <div></div>
+        { (order.id && order.status) ?  <h6>Estado <strong className="text-success">{order.status}</strong></h6> 
+        : order.pending && <Spinner/> 
         }
+
+        <OrderDetail show={show} handleClose={handleClose} order={order}/>
 
         <div className="overflow-auto order-list pt-3">
         {cart.map(ct =>(

@@ -16,7 +16,7 @@ ReactDOM.render(
     <Router>
     <Switch>
         <RouteCpx exact path="/order" component={Main} /> 
-        <Route exact path="/table" component={Table}/>
+        <Route exact path="/" component={Table}/>
         <Route component={NotFound}/>
     </Switch>
     </Router>

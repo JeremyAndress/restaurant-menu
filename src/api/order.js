@@ -1,6 +1,6 @@
 import {instance} from './index';
 
-export function create_order(data,wait,load,error) {
+export function create_order(data,wait,load,error,update,clean) {
     return async dispatch =>{
         try{
             dispatch(wait());
@@ -8,6 +8,8 @@ export function create_order(data,wait,load,error) {
             const response_data = res.data
             console.group(response_data);
             dispatch(load(response_data.id_rs));
+            dispatch(update('Creado'));
+            clean();
         }catch(err){
             dispatch(error());
             console.error(err);
