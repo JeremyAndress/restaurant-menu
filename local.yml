@@ -1,7 +1,7 @@
 version: '3.2'
 services:
   sample:
-    container_name: centralized-app
+    container_name: restaurant-app
     build:
       context: .
       dockerfile: ./compose/local/react.Dockerfile
