@@ -1,10 +1,10 @@
 # stage1 - build react app first 
-FROM node:13.12.0-alpine as build
+FROM node:14.15.1-alpine as build
 WORKDIR /app
 ENV PATH /app/node_modules/.bin:$PATH
 COPY ./package.json ./
 COPY yarn.lock ./
-RUN yarn --silent
+RUN yarn install
 COPY /public/ ./public
 COPY /src/ ./src
 RUN yarn build
