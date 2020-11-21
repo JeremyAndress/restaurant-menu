@@ -50,7 +50,7 @@ const OrderDetail = ({show,handleClose,order}) =>{
         </Modal.Body>
         <Modal.Footer>
         <button type="button" class="btn btn-success btn-lg btn-block">Pagar</button>
-            <h6>husky gei</h6>
+            
         </Modal.Footer>
         </Modal>
     )
