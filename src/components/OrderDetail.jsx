@@ -32,15 +32,17 @@ const OrderDetail = ({show,handleClose,order}) =>{
                 <th scope="col">Plato</th>
                 <th scope="col">Cantidad</th>
                 <th scope="col">Precio</th>
+                <th scope="col">Estado</th>
                 </tr>
             </thead>
             <tbody>
                 
                 {detail.data.map(dt =>(
                 <tr key={dt.id}>
-                    <td>tallarines</td>
+                    <td>{dt.name}</td>
                     <td>{dt.quantity}</td>
-                    <td>5000</td>
+                    <td>{dt.price}</td>
+                    <td>{dt.status}</td>
                 </tr>
                 ))}
                 
@@ -51,7 +53,7 @@ const OrderDetail = ({show,handleClose,order}) =>{
 
         </Modal.Body>
         <Modal.Footer>
-        <button type="button" class="btn btn-success btn-lg btn-block">Pagar</button>
+        <button type="button" className="btn btn-success btn-lg btn-block">Pagar</button>
             
         </Modal.Footer>
         </Modal>
