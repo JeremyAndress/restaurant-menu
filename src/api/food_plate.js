@@ -18,3 +18,19 @@ export function get_stock(food_id,ChangeStock) {
     }
 }
 
+export function get_food_plate(wait,load,error) {
+    return async dispatch =>{
+        try{
+            dispatch(wait());
+            const res = await instance.get('food_plates/get_all_food_plates_wjwt/')
+            const data = res.data
+            console.group(data);
+            dispatch(load(data));
+        }catch(err){
+            console.error(err);
+            dispatch(error());
+        }
+    }
+}
+
+
