@@ -12,11 +12,13 @@ const OrderDetail = ({show,handleClose,order}) =>{
     const detail = useSelector(store => store.detail)
 
     useEffect(()=>{
-        dispatch(get_order_detail(
-            order.id, loading_detail,
-            success_detail, error_detail
-        ))
-    },[dispatch,order.id])
+        if(order.id){
+            dispatch(get_order_detail(
+                order.id, loading_detail,
+                success_detail, error_detail
+            ))
+        }
+    },[dispatch,order.id,show])
 
     return(
         <Modal show={show} onHide={handleClose}>

@@ -1,6 +1,6 @@
 import React,{useState,useEffect} from 'react';
 import {useDispatch,useSelector} from 'react-redux';
-import {create_order,get_order} from '../api/order';
+import {create_order,update_order_ocd,get_order} from '../api/order';
 import Spinner from './Spinner';
 import OrderDetail from './OrderDetail';
 import {
@@ -50,6 +50,16 @@ const Order = ({cart,clean}) => {
         ));
     }
 
+    const UpdateOrder = () => {
+        const orders_detail = cart.map(ct => (
+            {food_plate_id:ct.id,quantity:ct.count,status:'Creado'}
+        ));
+        dispatch(update_order_ocd(
+            orders_detail, order.id, wait_order,
+            error_order, update_order, clean
+        ));
+    }
+
     return (
         <>
         {!order.id && <h4 className="font-uber-move-medium">Tu pedido</h4>}
@@ -75,7 +85,7 @@ const Order = ({cart,clean}) => {
         <div><p>Total: <strong>${total}</strong></p></div>
         {order.pending && <Spinner/>}
         {(!order.id && !order.pending) && <button type="button" onClick={CreateOrder} className="btn btn-success btn-lg btn-block">Realizar Pedido</button>}
-        {(order.id && !order.pending)&& <button type="button" className="btn btn-success btn-lg btn-block">Agregar al Pedido</button>}
+        {(order.id && !order.pending)&& <button type="button" onClick={UpdateOrder} className="btn btn-success btn-lg btn-block">Agregar al Pedido</button>}
         </div>
         </>
     )
