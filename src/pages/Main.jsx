@@ -47,9 +47,13 @@ const Main = () => {
       SetCart(new_cart)
     }
   }
+  const CleanLocalStorage = () =>{
+    localStorage.removeItem("order");
+    window.location.reload();
+  }
   return (
       <div className="container-fluid">
-        <p className="pb-3 pt-3 h3 font-uber-move-medium">Restaurant <strong className="text-success">Siglo XXI</strong></p>
+        <p onClick={CleanLocalStorage}  className="pb-3 pt-3 h3 font-uber-move-medium">Restaurant <strong className="text-success">Siglo XXI</strong></p>
         <hr/>
       <div className="row">
           <div className="col-lg-7  ">
