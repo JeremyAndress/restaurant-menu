@@ -8,6 +8,7 @@ import './index.css';
 import RouteCpx from './RouteCpx';
 import Main from './pages/Main';
 import Table from './pages/Table';
+import Payment from './pages/Payment';
 import NotFound from './pages/NotFound';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 
@@ -16,6 +17,7 @@ ReactDOM.render(
     <Router>
     <Switch>
         <RouteCpx exact path="/order" component={Main} /> 
+        <RouteCpx exact path="/payment" component={Payment} /> 
         <Route exact path="/" component={Table}/>
         <Route component={NotFound}/>
     </Switch>

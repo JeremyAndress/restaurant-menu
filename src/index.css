@@ -1,14 +1,7 @@
-@font-face {font-family: "Uber Move Medium";
-  src: url("http://db.onlinewebfonts.com/t/7530190cfa46223bb3db0ba0ddde0d37.eot"); /* IE9*/
-  src: url("http://db.onlinewebfonts.com/t/7530190cfa46223bb3db0ba0ddde0d37.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
-  url("http://db.onlinewebfonts.com/t/7530190cfa46223bb3db0ba0ddde0d37.woff2") format("woff2"), /* chrome firefox */
-  url("http://db.onlinewebfonts.com/t/7530190cfa46223bb3db0ba0ddde0d37.woff") format("woff"), /* chrome firefox */
-  url("http://db.onlinewebfonts.com/t/7530190cfa46223bb3db0ba0ddde0d37.ttf") format("truetype"), /* chrome firefox opera Safari, Android, iOS 4.2+*/
-  url("http://db.onlinewebfonts.com/t/7530190cfa46223bb3db0ba0ddde0d37.svg#Uber Move Medium") format("svg"); /* iOS 4.1- */
-}
+
 
 .font-uber-move-medium{
-  font-family:'Uber Move Medium';
+  font-family:helvetica,sans-serif;
 }
 
 .menu-scroll{
@@ -36,4 +29,71 @@
 .order-list{
   height: 450px;
   width:300%;
+}
+
+/*SVG  */
+#tick {
+  stroke: #63bc01;
+  stroke-width: 6;
+  transition: all 1s;
+}
+
+#circle {
+  stroke: #63bc01;
+  stroke-width: 6;
+  transform-origin: 50px 50px 0;
+  transition: all 1s;
+}
+
+.progress #tick {
+  opacity: 0;
+}
+
+.ready #tick {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: draw 8s ease-out forwards;
+}
+
+.progress #circle {
+  stroke: #4c4c4c;
+  stroke-dasharray: 314;
+  stroke-dashoffset: 1000;
+  animation: spin 3s linear infinite;
+}
+
+.ready #circle {
+  stroke-dashoffset: 66;
+  stroke: #63bc01;
+}
+
+#circle {
+  stroke-dasharray: 500;
+}
+
+
+@keyframes spin {
+  0% { 
+    transform: rotate(0deg);
+    stroke-dashoffset: 66;
+  } 
+  50% {
+    transform: rotate(540deg);
+    stroke-dashoffset: 314;
+  } 
+  100% {
+    transform: rotate(1080deg);
+    stroke-dashoffset: 66;
+  }
+}
+
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+#check {
+  width: 300px;
+  height: 300px;
 }

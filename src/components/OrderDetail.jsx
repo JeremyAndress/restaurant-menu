@@ -1,4 +1,5 @@
 import React,{useEffect} from 'react';
+import { useHistory } from "react-router-dom";
 import {useDispatch,useSelector} from 'react-redux';
 import Modal from 'react-bootstrap/Modal';
 import {get_order_detail} from '../api/detail';
@@ -9,6 +10,7 @@ import {
   
 const OrderDetail = ({show,handleClose,order}) =>{
     const dispatch = useDispatch()
+    let history = useHistory();
     const detail = useSelector(store => store.detail)
 
     useEffect(()=>{
@@ -20,6 +22,9 @@ const OrderDetail = ({show,handleClose,order}) =>{
         }
     },[dispatch,order.id,show])
 
+    const payment = ()=>{
+        history.push('/payment');
+    }
     return(
         <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
@@ -53,7 +58,7 @@ const OrderDetail = ({show,handleClose,order}) =>{
 
         </Modal.Body>
         <Modal.Footer>
-        <button type="button" className="btn btn-success btn-lg btn-block">Pagar</button>
+        <button type="button" onClick={payment} className="btn btn-success btn-lg btn-block">Pagar</button>
             
         </Modal.Footer>
         </Modal>
